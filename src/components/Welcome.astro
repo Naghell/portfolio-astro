@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import { FaLinkedin } from "react-icons/fa6";
+import { IoMdDocument } from "react-icons/io";
+---
+
+<section class="h-full flex flex-col justify-between relative">
+  <div class="text-center">
+    <h2 class="text-3xl font-bold mb-2 text-white">Hello! 👋🏻</h2>
+    <p class="text-xl text-violet-300 mb-4">
+      I'm <span class="font-semibold text-violet-100">Renzo</span>,
+      <br />Full Stack Developer
+    </p>
+    <p class="text-violet-200 mb-6">
+      Welcome to my portfolio built <br />with Astro 🚀
+    </p>
+  </div>
+
+  <div class="flex justify-center md:justify-between items-end w-full">
+    <Image
+      src="/profile/picture.png"
+      alt="Foto de perfil"
+      height={150}
+      width={150}
+      class="self-end size-32 md:size-44"
+    />
+    <div class="flex flex-col gap-2 w-full pb-6">
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        class="flex items-center gap-1 md:gap-2 font-bold w-full border-2 bg-violet-700/10 text-white text-center px-3 py-2 rounded hover:bg-violet-600/30 transition-all hover:-translate-y-1"
+      >
+        <IoMdDocument />CV</a
+      >
+      <a
+        href="https://linkedin.com/in/renzobxt"
+        target="_blank"
+        class="flex items-center gap-1 md:gap-2 font-bold w-full border-2 bg-violet-700/10 text-white text-center px-3 py-2 rounded hover:bg-violet-600/30 transition-all hover:-translate-y-1"
+      >
+        <FaLinkedin />LinkedIn</a
+      >
+    </div>
+  </div>
+</section>
