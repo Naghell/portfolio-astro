@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import '@fontsource-variable/inter';
 
 interface Props {
   title: string;
@@ -10,7 +11,6 @@ interface Props {
 const {
   title,
   description = "Test",
-  image = "/images/default-og.png",
 } = Astro.props;
 
 const clarityKey = import.meta.env.PUBLIC_CLARITY_KEY;
@@ -43,11 +43,6 @@ const clarityKey = import.meta.env.PUBLIC_CLARITY_KEY;
     <!-- Favicon -->
     <link rel="icon" type="image/ico" href="/favicon/favicon.ico" />
 
-    <!-- Fuentes (opcional, ajusta según tus necesidades) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
-      rel="stylesheet"
-    />
     {clarityKey && (
       <script define:vars={{ clarityKey }}>
         (function (c, l, a, r, i, t, y) {
