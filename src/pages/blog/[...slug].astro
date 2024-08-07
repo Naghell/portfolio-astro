@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post: any) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <main
+    class="w-full min-h-screen justify-center items-center flex text-white p-6"
+  >
+    <article class="w-full max-w-4xl flex flex-col gap-4">
+      <div
+        class="bg-gradient-to-br from-violet-900 to-violet-700 hover:from-violet-800 hover:to-violet-600 transition-all duration-300 border-2 border-violet-500 rounded-lg p-4"
+      >
+        <a
+          href="/blog"
+          class="text-violet-300 hover:text-white transition-colors mb-4 inline-block"
+        >
+          ← Back to Blog
+        </a>
+        <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+        <time
+          datetime={post.data.pubDate.toISOString()}
+          class="text-violet-400"
+        >
+          {formatDate(post.data.pubDate)}
+        </time>
+      </div>
+
+      <div
+        class="bg-gradient-to-br from-violet-900 to-violet-700 hover:from-violet-800 hover:to-violet-600 transition-all duration-300 border-2 border-violet-500 rounded-lg p-6 prose prose-invert prose-violet max-w-none"
+      >
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style is:global>
+  .prose h1 {
+    @apply text-3xl font-bold mt-8 mb-4 text-violet-300;
+  }
+  .prose h2 {
+    @apply text-2xl font-semibold mt-6 mb-3 text-violet-400;
+  }
+  .prose h3 {
+    @apply text-xl font-medium mt-4 mb-2 text-violet-500;
+  }
+  .prose p {
+    @apply my-4;
+  }
+  .prose ul,
+  .prose ol {
+    @apply my-4 pl-6;
+  }
+  .prose li {
+    @apply mb-2;
+  }
+  .prose a {
+    @apply text-violet-400 hover:text-violet-300 transition-colors;
+  }
+  .prose strong {
+    @apply text-violet-300;
+  }
+  .prose em {
+    @apply text-violet-400;
+  }
+</style>

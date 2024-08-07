@@ -1,4 +1,4 @@
-import { FaReact, FaNodeJs, FaBootstrap, FaSass } from "react-icons/fa6";
+import { FaReact, FaNodeJs, FaBootstrap, FaSass, FaAws } from "react-icons/fa6";
 import {
   SiNextdotjs,
   SiAstro,
@@ -61,4 +61,5 @@ export const techStack: TechStack = {
     { name: "MySQL", icon: SiMysql },
     { name: "PostgreSQL", icon: SiPostgresql },
   ],
+  "Cloud Services": [{ name: "AWS", icon: FaAws }],
 };
