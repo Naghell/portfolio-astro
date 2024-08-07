@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: "Portfolio Website (Astro)",
     description:
       "Current portfolio website built with Astro and Tailwind CSS, showcasing my projects and skills.",
-    imageUrl: "/projects/portfolio-astro.png",
+    imageUrl: "/projects/portfolio-astro.avif",
     technologies: [
       { name: "Astro", icon: SiAstro },
       { name: "Tailwind CSS", icon: SiTailwindcss },
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     title: "Portfolio Website (Next.js)",
     description:
       "Previous version of my portfolio built with Next.js, demonstrating my skills and projects.",
-    imageUrl: "/projects/portfolio-next.png",
+    imageUrl: "/projects/portfolio-next.avif",
     technologies: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "React", icon: FaReact },
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     title: "Minecraft Landing Page",
     description:
       "A landing page for Minecraft built with Astro, showcasing game features and information.",
-    imageUrl: "/projects/landing-minecraft-bento.png",
+    imageUrl: "/projects/landing-minecraft-bento.avif",
     technologies: [
       { name: "Astro", icon: SiAstro },
       { name: "TypeScript", icon: SiTypescript },
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     title: "PerrAPI",
     description:
       "A full-stack application that consumes a dog API, built with React, Vite, Node, Express, Sequelize, and PostgreSQL.",
-    imageUrl: "/projects/perrapi.jpeg",
+    imageUrl: "/projects/perrapi.avif",
     technologies: [
       { name: "React", icon: FaReact },
       { name: "Vite", icon: SiVite },
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     title: "Rick and Morty Explorer",
     description:
       "A web application that displays information from the Rick and Morty API, built with similar technologies to PerrAPI.",
-    imageUrl: "/projects/rick-and-morty.png",
+    imageUrl: "/projects/rick-and-morty.avif",
     technologies: [
       { name: "React", icon: FaReact },
       { name: "Vite", icon: SiVite },
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     title: "Real Estate Landing v1",
     description:
       "A landing page for a real estate company, built with HTML, CSS, and JavaScript.",
-    imageUrl: "/projects/coder-inmobiliaria-1.png",
+    imageUrl: "/projects/coder-inmobiliaria-1.avif",
     technologies: [
       { name: "HTML", icon: FaHtml5 },
       { name: "CSS", icon: FaCss3 },
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     title: "Real Estate Landing v2",
     description:
       "Another landing page for a different real estate company, also built with HTML, SCSS, and JavaScript.",
-    imageUrl: "/projects/coder-inmobiliaria-2.png",
+    imageUrl: "/projects/coder-inmobiliaria-2.avif",
     technologies: [
       { name: "HTML", icon: FaHtml5 },
       { name: "SCSS", icon: FaSass },
@@ -129,7 +129,7 @@ export const projects: Project[] = [
   {
     title: "FuxiaLab Landing Page",
     description: "A landing page for FuxiaLab, built with Next.js.",
-    imageUrl: "/projects/fuxia-lab.png",
+    imageUrl: "/projects/fuxia-lab.avif",
     technologies: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "React", icon: FaReact },
