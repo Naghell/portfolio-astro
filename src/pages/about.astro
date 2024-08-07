@@ -1,4 +1,5 @@
 ---
+import { FaArrowLeft } from "react-icons/fa6";
 import Layout from "../layouts/Layout.astro";
 import { aboutData } from "../utils/about";
 ---
@@ -12,10 +13,14 @@ import { aboutData } from "../utils/about";
   >
     <div class="w-full max-w-6xl flex flex-col gap-4">
       <div
-        class="bg-gradient-to-br from-violet-900 to-violet-700 hover:from-violet-800 hover:to-violet-600 transition-all duration-300 border-2 border-violet-500 rounded-lg p-4 flex justify-between items-center"
+        class="flex-col md:flex-row bg-gradient-to-br from-violet-900 to-violet-700 hover:from-violet-800 hover:to-violet-600 transition-all duration-300 border-2 border-violet-500 rounded-lg p-4 flex items-start md:items-center justify-between"
       >
-        <a href="/" class="text-violet-300 hover:text-white transition-colors">
-          ← Back to Home
+        <a
+          href="/"
+          class="text-violet-300 hover:text-white transition-colors flex gap-2 items-center"
+        >
+          <FaArrowLeft />
+          Back to Home
         </a>
         <h1 class="text-3xl font-bold text-center">About Me</h1>
       </div>
