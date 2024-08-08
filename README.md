@@ -11,68 +11,39 @@ Welcome to my Astro-based portfolio template! This project provides a modern, fa
 - 📝 Integrated blog with Markdown support
 - 🔍 SEO optimized
 - 📊 Analytics ready (configured for Microsoft Clarity)
-- 🌙 Dark mode support
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (version 14 or later)
-- npm or yarn
+- Node.js (version 18 or later)
+- npm, pnpm, yarn or bun
 
 ### Installation
 
-1. Clone the repository:
+1. Install dependencies:
 
    ```
-   git clone https://github.com/yourusername/astro-portfolio-template.git
+   pnpm install
    ```
 
-2. Navigate to the project directory:
+2. Start the development server:
 
    ```
-   cd astro-portfolio-template
+   pnpm run dev
    ```
 
-3. Install dependencies:
-
-   ```
-   npm install
-   ```
-
-4. Start the development server:
-
-   ```
-   npm run dev
-   ```
-
-5. Open `http://localhost:3000` in your browser to see the site.
+3. Open `http://localhost:4321` in your browser to see the site.
 
 ## Customization
 
 ### Personal Information
 
-Edit `src/data/about.ts` to update your personal information, skills, and experiences.
-
-### Projects
-
-Modify `src/data/projects.ts` to add or update your projects.
+Edit `src/utils/*` to update your personal information, skills, and experiences.
 
 ### Blog Posts
 
 Add new blog posts as Markdown files in the `src/content/blog/` directory.
-
-### Styling
-
-The project uses Tailwind CSS. Customize the theme in `tailwind.config.cjs`.
-
-### Layout
-
-Modify the main layout in `src/layouts/Layout.astro`.
-
-### Pages
-
-Individual pages are located in `src/pages/`. Edit these to change the content and structure of each page.
 
 ## Environment Variables
 
@@ -112,7 +83,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact me at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or suggestions, please feel free to contact me at [naghybusiness@gmail.com](mailto:naghybusiness@gmail.com).
 
 ---
 
