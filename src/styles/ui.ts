@@ -16,7 +16,7 @@ export const CARD_PAD = "p-4";
 export const INNER_RADIUS = "rounded-lg";
 
 export const BUTTON =
-  "inline-flex items-center gap-2 rounded-lg border border-surface-border px-3 py-2 text-sm font-semibold text-content-primary transition-colors duration-150 hover:bg-content-accent/10 active:scale-[0.96] [transition-property:color,background-color,scale] motion-reduce:active:scale-100";
+  "inline-flex min-h-11 items-center gap-2 rounded-lg border border-surface-border px-3 py-2 text-sm font-semibold text-content-primary transition-colors duration-150 hover:bg-content-accent/10 active:scale-[0.96] [transition-property:color,background-color,scale] motion-reduce:active:scale-100";
 
 export const CHIP =
   "inline-flex items-center gap-1.5 rounded-md border border-surface-border/60 bg-content-accent/5 px-2 py-1 text-sm text-content-secondary";
