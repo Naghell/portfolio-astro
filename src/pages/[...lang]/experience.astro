@@ -1,0 +1,91 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { langPaths } from "../../i18n/paths";
+import { toLang, useTranslations } from "../../i18n/ui";
+import { workExperience } from "../../utils/experience";
+import { CARD, CHIP, FOCUS } from "../../styles/ui";
+
+export const getStaticPaths = langPaths;
+
+const lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+const jobs = workExperience(lang);
+---
+
+<Layout lang={lang} path="/experience">
+  <main id="main" class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <PageHeader title={t("nav.experience")} />
+
+    <ol class="flex flex-col gap-4">
+      {
+        jobs.map((job) => (
+          <li class={`${CARD} p-4 sm:p-6`}>
+            <article>
+              <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
+                <div class="flex items-center gap-3">
+                  {/* A neutral plate keeps mixed-brand logos legible in both themes,
+                      instead of shipping a light and a dark variant of each. */}
+                  <span class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-plate p-2 outline outline-1 -outline-offset-1 outline-image">
+                    <img
+                      src={job.logo}
+                      alt={t("experience.logoAlt", { company: job.company })}
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                      decoding="async"
+                      class="size-8 object-contain"
+                    />
+                  </span>
+                  <div>
+                    <h2 class="text-xl font-semibold text-content-primary">{job.position}</h2>
+                    <p class="text-content-accent">
+                      {job.companyUrl ? (
+                        <a
+                          href={job.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class={`${FOCUS} rounded-sm underline decoration-from-font underline-offset-4 hover:decoration-2`}
+                        >
+                          {job.company}
+                        </a>
+                      ) : (
+                        job.company
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <p class="text-sm font-medium tabular-nums text-content-secondary">{job.period}</p>
+              </div>
+
+              <p class="mt-4 max-w-[68ch] text-pretty leading-relaxed text-content-secondary">
+                {job.description}
+              </p>
+
+              <h3 class="mb-2 mt-5 font-semibold text-content-primary">
+                {t("experience.responsibilities")}
+              </h3>
+              <ul class="list-disc space-y-1.5 pl-5 text-content-secondary marker:text-content-accent">
+                {job.responsibilities.map((r) => (
+                  <li class="max-w-[68ch] text-pretty leading-relaxed">{r}</li>
+                ))}
+              </ul>
+
+              <h3 class="mb-2 mt-5 font-semibold text-content-primary">
+                {t("experience.technologies")}
+              </h3>
+              <ul class="flex flex-wrap gap-2">
+                {job.technologies.map((tech) => (
+                  <li class={CHIP}>
+                    <tech.icon aria-hidden="true" className="size-4 shrink-0" />
+                    <span class="whitespace-nowrap">{tech.name}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+  </main>
+</Layout>

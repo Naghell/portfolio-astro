@@ -1,29 +1,23 @@
-import {
-  FaReact,
-  FaNodeJs,
-  FaHtml5,
-  FaSass,
-  FaJs,
-  FaCss3,
-} from "react-icons/fa6";
+import { FaReact } from "react-icons/fa6";
 import {
   SiNextdotjs,
   SiAstro,
   SiTailwindcss,
-  SiExpress,
   SiTypescript,
-  SiVite,
-  SiSequelize,
   SiPostgresql,
+  SiSupabase,
+  SiBun,
+  SiDocker,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
+import type { Lang } from "../i18n/ui";
 
 interface Technology {
   name: string;
   icon: IconType;
 }
 
-interface Project {
+export interface Project {
   title: string;
   description: string;
   imageUrl: string;
@@ -32,109 +26,73 @@ interface Project {
   liveUrl?: string;
 }
 
-export const projects: Project[] = [
+const base = [
   {
-    title: "Portfolio Website (Astro)",
-    description:
-      "Current portfolio website built with Astro and Tailwind CSS, showcasing my projects and skills.",
+    title: "Habita",
+    imageUrl: "/projects/habita.avif",
+    technologies: [
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Bun", icon: SiBun },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "Docker", icon: SiDocker },
+    ],
+    en: "A rental contract is a mess of index adjustments, guarantees and split receipts. Habita keeps that straight for an agency: every contract, what it owes whom, and where the month landed. Multi-tenant, with row-level security in Postgres.",
+    es: "Un contrato de alquiler es un lío de ajustes por índice, garantías y recibos partidos. Habita se lo ordena a la inmobiliaria: cada contrato, quién le debe qué, y cómo cerró el mes. Multi-tenant, con row-level security en Postgres.",
+  },
+  {
+    title: "Comunidad Reborn",
+    imageUrl: "/projects/comunidad-reborn.avif",
+    liveUrl: "https://comunidadreborn.net",
+    technologies: [
+      { name: "Next.js", icon: SiNextdotjs },
+      { name: "React", icon: FaReact },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Supabase", icon: SiSupabase },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+    ],
+    en: "Home base for a gaming community. Players sign in with their Steam account, see which servers are up, read the rules and buy from a Tebex-backed store.",
+    es: "La casa de una comunidad gamer. Los jugadores entran con su cuenta de Steam, ven qué servidores están arriba, leen el reglamento y compran en una tienda conectada a Tebex.",
+  },
+  {
+    title: "Portfolio (Astro)",
     imageUrl: "/projects/portfolio-astro.avif",
+    githubUrl: "https://github.com/Naghell/portfolio-astro",
+    liveUrl: "https://battaglino.dev",
     technologies: [
       { name: "Astro", icon: SiAstro },
       { name: "Tailwind CSS", icon: SiTailwindcss },
       { name: "TypeScript", icon: SiTypescript },
     ],
-    githubUrl: "https://github.com/naghell/portfolio-astro",
-  },
-  {
-    title: "Portfolio Website (Next.js)",
-    description:
-      "Previous version of my portfolio built with Next.js, demonstrating my skills and projects.",
-    imageUrl: "/projects/portfolio-next.avif",
-    technologies: [
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "React", icon: FaReact },
-      { name: "TypeScript", icon: SiTypescript },
-    ],
-    githubUrl: "https://github.com/naghell/my-fullstack-portfolio",
-    liveUrl: "https://my-fullstack-portfolio.vercel.app/",
+    en: "This site. A bento grid in Astro, two languages, two themes, and a CV that is generated rather than exported by hand.",
+    es: "Este sitio. Una grilla bento en Astro, dos idiomas, dos temas, y un CV que se genera en vez de exportarse a mano.",
   },
   {
     title: "Minecraft Landing Page",
-    description:
-      "A landing page for Minecraft built with Astro, showcasing game features and information.",
     imageUrl: "/projects/landing-minecraft-bento.avif",
+    githubUrl: "https://github.com/Naghell/bento-minecraft-landing",
+    liveUrl: "https://bento-minecraft-landing.vercel.app/",
     technologies: [
       { name: "Astro", icon: SiAstro },
       { name: "TypeScript", icon: SiTypescript },
       { name: "Tailwind CSS", icon: SiTailwindcss },
     ],
-    githubUrl: "https://github.com/Naghell/bento-minecraft-landing",
-    liveUrl: "https://bento-minecraft-landing.vercel.app/",
-  },
-  {
-    title: "PerrAPI",
-    description:
-      "A full-stack application that consumes a dog API, built with React, Vite, Node, Express, Sequelize, and PostgreSQL.",
-    imageUrl: "/projects/perrapi.avif",
-    technologies: [
-      { name: "React", icon: FaReact },
-      { name: "Vite", icon: SiVite },
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express", icon: SiExpress },
-      { name: "Sequelize", icon: SiSequelize },
-      { name: "PostgreSQL", icon: SiPostgresql },
-    ],
-    githubUrl: "https://github.com/Naghell/PI-Perros",
-  },
-  {
-    title: "Rick and Morty Explorer",
-    description:
-      "A web application that displays information from the Rick and Morty API, built with similar technologies to PerrAPI.",
-    imageUrl: "/projects/rick-and-morty.avif",
-    technologies: [
-      { name: "React", icon: FaReact },
-      { name: "Vite", icon: SiVite },
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express", icon: SiExpress },
-      { name: "Sequelize", icon: SiSequelize },
-      { name: "PostgreSQL", icon: SiPostgresql },
-    ],
-    githubUrl: "https://github.com/Naghell/soyHenry-integrador",
-  },
-  {
-    title: "Real Estate Landing v1",
-    description:
-      "A landing page for a real estate company, built with HTML, CSS, and JavaScript.",
-    imageUrl: "/projects/coder-inmobiliaria-1.avif",
-    technologies: [
-      { name: "HTML", icon: FaHtml5 },
-      { name: "CSS", icon: FaCss3 },
-      { name: "JavaScript", icon: FaJs },
-    ],
-    githubUrl: "https://github.com/Naghell/coder-inmobiliaria",
-  },
-  {
-    title: "Real Estate Landing v2",
-    description:
-      "Another landing page for a different real estate company, also built with HTML, SCSS, and JavaScript.",
-    imageUrl: "/projects/coder-inmobiliaria-2.avif",
-    technologies: [
-      { name: "HTML", icon: FaHtml5 },
-      { name: "SCSS", icon: FaSass },
-      { name: "JavaScript", icon: FaJs },
-    ],
-    githubUrl: "https://github.com/Naghell/coder-inmobiliaria-v2",
-    liveUrl: "https://coder-inmobiliaria-v2.vercel.app/",
+    en: "A bento-style landing page for Minecraft built with Astro, showcasing game features and information.",
+    es: "Una landing estilo bento para Minecraft construida con Astro, que presenta las características del juego.",
   },
   {
     title: "FuxiaLab Landing Page",
-    description: "A landing page for FuxiaLab, built with Next.js.",
     imageUrl: "/projects/fuxia-lab.avif",
+    liveUrl: "https://fuxialab.com",
     technologies: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "React", icon: FaReact },
       { name: "TypeScript", icon: SiTypescript },
     ],
-    liveUrl: "https://fuxialab.com",
+    en: "A landing page for FuxiaLab, a creative agency, built with Next.js.",
+    es: "Una landing para FuxiaLab, una agencia creativa, construida con Next.js.",
   },
 ];
+
+export const projects = (lang: Lang): Project[] =>
+  base.map(({ en, es, ...rest }) => ({ ...rest, description: lang === "es" ? es : en }));

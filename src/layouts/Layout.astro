@@ -1,50 +1,143 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import '@fontsource-variable/inter';
+import "@fontsource-variable/inter";
+import "../styles/theme.css";
+import TopBar from "../components/TopBar.astro";
+import {
+  LANGS,
+  DEFAULT_LANG,
+  localizePath,
+  useTranslations,
+  meta as routeMeta,
+  type Lang,
+} from "../i18n/ui";
 
 interface Props {
-  title: string;
-  description: string;
+  lang: Lang;
+  /** English-rooted path of this page, e.g. "/" or "/about". */
+  path: string;
+  /** Explicit URL per language. Needed where the translation is not just a prefix
+   *  away, such as blog posts with localized slugs. */
+  altPaths?: Record<Lang, string>;
+  title?: string;
+  description?: string;
   image?: string;
+  type?: "website" | "article";
 }
 
 const {
-  title,
-  description = "Test",
+  lang,
+  path,
+  altPaths,
+  title: titleOverride,
+  description: descriptionOverride,
+  image = "/og.png",
+  type = "website",
 } = Astro.props;
 
+const t = useTranslations(lang);
+const paths =
+  altPaths ?? (Object.fromEntries(LANGS.map((l) => [l, localizePath(path, l)])) as Record<Lang, string>);
+const fallback = routeMeta[lang][path];
+const title = titleOverride ?? fallback?.title ?? "";
+const description = descriptionOverride ?? fallback?.description ?? "";
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+const fullTitle = `${title} | Renzo Luis Battaglino — ${t("site.role")}`;
+
 const clarityKey = import.meta.env.PUBLIC_CLARITY_KEY;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Renzo Luis Battaglino",
+  url: Astro.site?.href,
+  image: ogImage.href,
+  jobTitle: "Full Stack Developer",
+  email: "mailto:renzo@battaglino.dev",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Córdoba",
+    addressCountry: "AR",
+  },
+  worksFor: { "@type": "Organization", name: "Lannis" },
+  alumniOf: [
+    { "@type": "CollegeOrUniversity", name: "Universidad Tecnológica Nacional - FRC" },
+    { "@type": "EducationalOrganization", name: "SoyHenry Bootcamp" },
+  ],
+  knowsAbout: [
+    "TypeScript", "React", "Next.js", "Astro", "Node.js", "NestJS",
+    "Prisma", "PostgreSQL", "Redis", "Docker", "AWS",
+  ],
+  sameAs: ["https://github.com/Naghell", "https://linkedin.com/in/renzobxt"],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang} class="scroll-smooth motion-reduce:scroll-auto">
   <head>
-    <!-- Metaetiquetas básicas -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO -->
-    <title>{title} | Renzo Luis Battaglino - Software Engineer</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content="naghell, full stack, developer, argentina, next, astro, landing, website, portfolio, programming, front end, back end, nest" />
+    <!-- Resolve the theme before first paint, or the page flashes the wrong one.
+         No stored choice means follow the system. -->
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("theme");
+          const system = matchMedia("(prefers-color-scheme: dark)").matches;
+          if (stored === "dark" || (stored !== "light" && system)) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (_) {
+          /* private mode: fall through to the light default */
+        }
+      })();
+    </script>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={title} />
+    <!-- SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Renzo Luis Battaglino" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+
+    {
+      LANGS.map((l) => (
+        <link rel="alternate" hreflang={l} href={new URL(paths[l], Astro.site)} />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(paths[DEFAULT_LANG], Astro.site)}
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Renzo Luis Battaglino" />
+    <meta property="og:locale" content={lang === "es" ? "es_AR" : "en_US"} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Renzo Luis Battaglino — Full Stack Developer" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/ico" href="/favicon/favicon.ico" />
 
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+
     {clarityKey && (
-      <script define:vars={{ clarityKey }}>
+      <script is:inline define:vars={{ clarityKey }}>
         (function (c, l, a, r, i, t, y) {
           c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
           t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
@@ -53,11 +146,84 @@ const clarityKey = import.meta.env.PUBLIC_CLARITY_KEY;
       </script>
     )}
 
-    <!-- Otros metadatos -->
     <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
   </head>
-  <body class="w-full h-screen bg-darkBackground">
+
+  <body
+    class="min-h-screen bg-page text-content-primary antialiased [text-box:trim-both_cap_alphabetic]"
+  >
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-page focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-content-primary focus-ring"
+      >{t("nav.skip")}</a
+    >
+    <TopBar lang={lang} paths={paths} isHome={path === "/"} />
     <slot />
   </body>
 </html>
+
+<script>
+  // Delegated so it survives ViewTransitions body swaps without rebinding.
+  const KEY = "theme";
+  const systemDark = () => matchMedia("(prefers-color-scheme: dark)").matches;
+
+  function syncLabel() {
+    const isDark = document.documentElement.classList.contains("dark");
+    for (const el of document.querySelectorAll<HTMLElement>("[data-theme-toggle]")) {
+      const next = isDark ? el.dataset.labelLight : el.dataset.labelDark;
+      if (next) el.setAttribute("aria-label", next);
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element | null)?.closest("[data-theme-toggle]");
+    if (!btn) return;
+
+    const root = document.documentElement;
+    const nextDark = !root.classList.contains("dark");
+
+    // Suppress transitions for the swap, force a reflow, restore next frame.
+    root.classList.add("theme-switching");
+    root.classList.toggle("dark", nextDark);
+    void root.offsetHeight;
+    requestAnimationFrame(() => root.classList.remove("theme-switching"));
+
+    try {
+      // Choosing the system's own value hands control back to the system,
+      // so later OS changes keep following.
+      if (nextDark === systemDark()) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, nextDark ? "dark" : "light");
+    } catch (_) {
+      /* storage unavailable: the choice lasts for this page only */
+    }
+    syncLabel();
+  });
+
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(KEY);
+    } catch (_) {
+      /* ignore */
+    }
+    if (stored) return;
+    document.documentElement.classList.toggle("dark", e.matches);
+    syncLabel();
+  });
+
+  // Astro swaps the document on navigation; re-apply before the new page paints.
+  document.addEventListener("astro:after-swap", () => {
+    let stored: string | null = null;
+    try {
+      stored = localStorage.getItem(KEY);
+    } catch (_) {
+      /* ignore */
+    }
+    const dark = stored === "dark" || (stored !== "light" && systemDark());
+    document.documentElement.classList.toggle("dark", dark);
+    syncLabel();
+  });
+
+  syncLabel();
+</script>

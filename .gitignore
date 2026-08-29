@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# generated CV preview (source is cv/*.mjs, output is public/cv/*.pdf)
+cv/preview-*.html

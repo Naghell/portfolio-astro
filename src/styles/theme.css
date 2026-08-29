@@ -1,0 +1,138 @@
+/* Semantic tokens. Primitives are Tailwind's violet ramp; nothing below is a raw
+   value applied in a component — components only ever reference these roles.
+   One switching mechanism: the `.dark` class on <html>. No prefers-color-scheme
+   here; the inline script in Layout.astro resolves the system preference to a class. */
+
+:root {
+  --bg-page: #faf9ff;
+  --surface-from: #ffffff;
+  --surface-to: #f5f3ff;
+  --surface-hover-from: #f5f3ff;
+  --surface-hover-to: #ede9fe;
+  --border-surface: #ddd6fe;
+  --text-primary: #1e1b2e;
+  --text-secondary: #514c66;
+  --text-accent: #6d28d9;
+  --focus-ring: #7c3aed;
+  --logo-plate: #ffffff;
+  --image-outline: rgb(0 0 0 / 0.1);
+  --shadow-surface: 0 1px 2px rgb(30 27 46 / 0.04), 0 4px 12px rgb(30 27 46 / 0.06);
+}
+
+.dark {
+  --bg-page: #0a0a0a;
+  --surface-from: #2e1065;
+  --surface-to: #5b21b6;
+  --surface-hover-from: #4c1d95;
+  --surface-hover-to: #6d28d9;
+  --border-surface: #8b5cf6;
+  --text-primary: #ffffff;
+  --text-secondary: #ddd6fe;
+  --text-accent: #c4b5fd;
+  --focus-ring: #a78bfa;
+  --logo-plate: #ffffff;
+  --image-outline: rgb(255 255 255 / 0.1);
+  --shadow-surface: none;
+}
+
+/* Reserve the scrollbar gutter on every page. Without it a short page has no
+   scrollbar and a long one does, so centred content jumps sideways by the
+   scrollbar width on each navigation. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* One shorthand, so width, style and colour land together. Split `outline-*`
+   utilities lose the width and colour back to the UA's own `outline` shorthand. */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.focus-ring-inset:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+/* better-ui: a theme flip repaints color, background, border and shadow at once.
+   Without this the switch smears instead of snapping. */
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+::selection {
+  background-color: var(--text-accent);
+  color: var(--bg-page);
+}
+
+/* Blog post prose. Kept as plain CSS rather than a stack of [&_x]: arbitrary
+   variants: one of those silently broke a focus ring elsewhere, and this is the
+   one place where a wide child (a code block) must not push the page sideways. */
+.post {
+  min-width: 0;
+  max-width: 68ch;
+  color: var(--text-secondary);
+}
+.post > * + * { margin-top: 1rem; }
+.post p { line-height: 1.65; }
+.post h2 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+.post h3 {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.post strong { color: var(--text-primary); font-weight: 600; }
+.post a {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
+}
+.post ul, .post ol { padding-inline-start: 1.25rem; }
+.post ul { list-style: disc; }
+.post ol { list-style: decimal; }
+.post li { margin-bottom: 0.35rem; }
+.post li::marker { color: var(--text-accent); }
+.post :not(pre) > code {
+  border-radius: 0.25rem;
+  background: color-mix(in oklab, var(--text-accent) 12%, transparent);
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+  color: var(--text-primary);
+  overflow-wrap: break-word;
+}
+/* The wide child. Without both of these a long line pushes the whole page sideways. */
+.post pre {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--border-surface) 40%, transparent);
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+.post pre code { display: block; width: max-content; min-width: 100%; }
+.post img { border-radius: 0.5rem; outline: 1px solid var(--image-outline); outline-offset: -1px; }
+
+/* Shiki dual-theme output: every token carries both colours, and the active theme picks one. */
+.post .astro-code,
+.post .astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+.dark .post .astro-code,
+.dark .post .astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}

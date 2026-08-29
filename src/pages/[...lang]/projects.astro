@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import { FaGithub, FaArrowUpRightFromSquare } from "react-icons/fa6";
+import Layout from "../../layouts/Layout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { langPaths } from "../../i18n/paths";
+import { toLang, useTranslations } from "../../i18n/ui";
+import { projects } from "../../utils/projects";
+import { CARD, CHIP, BUTTON, FOCUS } from "../../styles/ui";
+
+export const getStaticPaths = langPaths;
+
+const lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+const items = projects(lang);
+---
+
+<Layout lang={lang} path="/projects">
+  <main id="main" class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+    <PageHeader title={t("nav.projects")} />
+
+    <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((project) => (
+          <li class={`${CARD} flex flex-col gap-3 p-4`}>
+            <Image
+              src={project.imageUrl}
+              alt=""
+              width={500}
+              height={300}
+              loading="lazy"
+              class="h-44 w-full rounded-lg object-cover outline outline-1 -outline-offset-1 outline-image"
+            />
+            <h2 class="text-balance text-xl font-semibold text-content-primary">{project.title}</h2>
+            <p class="flex-1 text-pretty leading-relaxed text-content-secondary">
+              {project.description}
+            </p>
+
+            <ul class="flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <li class={CHIP}>
+                  <tech.icon aria-hidden="true" className="size-4 shrink-0" />
+                  <span class="whitespace-nowrap">{tech.name}</span>
+                </li>
+              ))}
+            </ul>
+
+            {(project.githubUrl || project.liveUrl) && (
+              <div class="flex flex-wrap gap-2">
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t("projects.githubOf", { project: project.title })}
+                    class={`${BUTTON} ${FOCUS}`}
+                  >
+                    <FaGithub aria-hidden="true" />
+                    {t("projects.github")}
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t("projects.liveOf", { project: project.title })}
+                    class={`${BUTTON} ${FOCUS}`}
+                  >
+                    <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
+                    {t("projects.live")}
+                  </a>
+                )}
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>

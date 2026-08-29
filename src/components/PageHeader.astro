@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  intro?: string;
+}
+const { title, intro } = Astro.props;
+---
+<header class="mb-6">
+  <h1 class="text-balance text-3xl font-bold tracking-tight text-content-primary sm:text-4xl">
+    {title}
+  </h1>
+  {intro && <p class="mt-2 max-w-[65ch] text-pretty leading-relaxed text-content-secondary">{intro}</p>}
+</header>
