@@ -59,8 +59,8 @@ export const cv = {
     },
     projects: [
       {
-        name: "Habita",
-        note: "Property management platform for real estate agencies: contracts with indexed rent adjustments, receipts for tenants and owners, commission tracking and a monthly balance dashboard. Bun monorepo, Next.js + Hono, PostgreSQL with row-level security.",
+        name: "Habita — habita.ar",
+        note: "Multi-tenant SaaS for Argentine real estate agencies: contracts with automatic index adjustment (ICL, IPC, UVA, CER), daily billing, owner settlements with itemized commission, tenant and owner portals. One core package behind the HTTP API and an MCP server. Bun monorepo, Next.js + Hono, PostgreSQL with row-level security.",
       },
       {
         name: "Comunidad Reborn — comunidadreborn.net",
@@ -135,8 +135,8 @@ export const cv = {
     },
     projects: [
       {
-        name: "Habita",
-        note: "Plataforma de gestión para inmobiliarias: contratos con ajustes de alquiler indexados, recibos para inquilinos y propietarios, seguimiento de comisiones y dashboard de balance mensual. Monorepo Bun, Next.js + Hono, PostgreSQL con row-level security.",
+        name: "Habita — habita.ar",
+        note: "SaaS multi-tenant para inmobiliarias argentinas: contratos con ajuste automático por índice (ICL, IPC, UVA, CER), facturación diaria, liquidaciones al propietario con comisión ítem por ítem, portales de inquilino y propietario. Un solo core detrás de la API HTTP y de un servidor MCP. Monorepo Bun, Next.js + Hono, PostgreSQL con row-level security.",
       },
       {
         name: "Comunidad Reborn — comunidadreborn.net",

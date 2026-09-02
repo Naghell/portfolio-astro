@@ -30,6 +30,7 @@ const base = [
   {
     title: "Habita",
     imageUrl: "/projects/habita.avif",
+    liveUrl: "https://habita.ar",
     technologies: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "TypeScript", icon: SiTypescript },
@@ -37,8 +38,8 @@ const base = [
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "Docker", icon: SiDocker },
     ],
-    en: "A rental contract is a mess of index adjustments, guarantees and split receipts. Habita keeps that straight for an agency: every contract, what it owes whom, and where the month landed. Multi-tenant, with row-level security in Postgres.",
-    es: "Un contrato de alquiler es un lío de ajustes por índice, garantías y recibos partidos. Habita se lo ordena a la inmobiliaria: cada contrato, quién le debe qué, y cómo cerró el mes. Multi-tenant, con row-level security en Postgres.",
+    en: "A rental contract is a mess of index adjustments, guarantees and split receipts. Habita keeps that straight for an agency: contracts that adjust by ICL, IPC, UVA or CER, daily billing, owner settlements with itemized commission, and portals for tenants and owners. One core package behind both the HTTP API and an MCP server, with tenant isolation enforced by row-level security in Postgres.",
+    es: "Un contrato de alquiler es un lío de ajustes por índice, garantías y recibos partidos. Habita se lo ordena a la inmobiliaria: contratos que ajustan por ICL, IPC, UVA o CER, facturación diaria, liquidaciones al propietario con comisión ítem por ítem, y portales para inquilinos y propietarios. Un solo core detrás de la API HTTP y de un servidor MCP, con aislamiento por row-level security en Postgres.",
   },
   {
     title: "Comunidad Reborn",
