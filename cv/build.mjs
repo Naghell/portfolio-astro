@@ -64,6 +64,7 @@ function render(lang) {
     contact.site,
     contact.linkedin,
     contact.github,
+    contact.x,
   ]
     .map((x) => `<span>${esc(x)}</span>`)
     .join(" &nbsp;·&nbsp; ");

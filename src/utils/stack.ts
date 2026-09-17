@@ -25,6 +25,7 @@ import {
   SiLinear,
   SiFigma,
   SiLua,
+  SiGo,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
 import type { Lang } from "../i18n/ui";
@@ -47,6 +48,7 @@ const groups: { en: string; es: string; items: TechItem[] }[] = [
     items: [
       { name: "TypeScript", icon: SiTypescript },
       { name: "JavaScript", icon: SiJavascript },
+      { name: "Go", icon: SiGo },
       { name: "Lua (Garry's Mod)", icon: SiLua },
       { name: "Java (Minecraft)", icon: FaJava },
     ],

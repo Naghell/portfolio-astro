@@ -9,6 +9,7 @@ export const contact = {
   site: "battaglino.dev",
   linkedin: "linkedin.com/in/renzobxt",
   github: "github.com/Naghell",
+  x: "x.com/ren_tsx",
 };
 
 export const cv = {
@@ -60,7 +61,11 @@ export const cv = {
     projects: [
       {
         name: "Habita — habita.ar",
-        note: "Multi-tenant SaaS for Argentine real estate agencies: contracts with automatic index adjustment (ICL, IPC, UVA, CER), daily billing, owner settlements with itemized commission, tenant and owner portals. One core package behind the HTTP API and an MCP server. Bun monorepo, Next.js + Hono, PostgreSQL with row-level security.",
+        note: "Multi-tenant SaaS for Argentine real estate agencies: contracts with automatic index adjustment (ICL, IPC, UVA, CER), services and taxes per contract, owner settlements with itemized commission, daily cash book and due-date agenda, portfolio import from eSecure and spreadsheets, tenant and owner portals with WhatsApp notifications. One core package behind the HTTP API and an MCP server covering the full backoffice. Bun monorepo, Next.js + Hono, PostgreSQL with row-level security.",
+      },
+      {
+        name: "Barrito (in progress)",
+        note: "Neighborhood issue map for Ombú and Escobar (Córdoba), designed for older users on mobile: four-step reporting with photo and location, Waze-style confirmation votes, per-category contacts and an admin moderation panel. Go API (net/http, pgx, sqlc), Next.js, PostgreSQL, S3-compatible photo storage with EXIF stripping and SafeSearch screening, deployed with Docker Compose and GitHub Actions.",
       },
       {
         name: "Comunidad Reborn — comunidadreborn.net",
@@ -72,7 +77,7 @@ export const cv = {
       },
     ],
     skills: [
-      ["Languages", "TypeScript, JavaScript, Lua, Java"],
+      ["Languages", "TypeScript, JavaScript, Go, Lua, Java"],
       ["Frontend", "React, Next.js, Astro, Redux / RTK, Tailwind CSS, SCSS"],
       ["Backend", "Node.js, NestJS, Fastify, Express, Bun"],
       ["Data", "PostgreSQL, MySQL / MariaDB, Redis, Prisma, Sequelize"],
@@ -136,7 +141,11 @@ export const cv = {
     projects: [
       {
         name: "Habita — habita.ar",
-        note: "SaaS multi-tenant para inmobiliarias argentinas: contratos con ajuste automático por índice (ICL, IPC, UVA, CER), facturación diaria, liquidaciones al propietario con comisión ítem por ítem, portales de inquilino y propietario. Un solo core detrás de la API HTTP y de un servidor MCP. Monorepo Bun, Next.js + Hono, PostgreSQL con row-level security.",
+        note: "SaaS multi-tenant para inmobiliarias argentinas: contratos con ajuste automático por índice (ICL, IPC, UVA, CER), servicios e impuestos por contrato, liquidaciones al propietario con comisión ítem por ítem, caja diaria y agenda de vencimientos, importación de cartera desde eSecure y planillas, portales de inquilino y propietario con avisos por WhatsApp. Un solo core detrás de la API HTTP y de un servidor MCP que cubre todo el backoffice. Monorepo Bun, Next.js + Hono, PostgreSQL con row-level security.",
+      },
+      {
+        name: "Barrito (en desarrollo)",
+        note: "Mapa de problemas del barrio para Ombú y Escobar (Córdoba), pensado para gente mayor desde el celular: reporte en cuatro pasos con foto y ubicación, votos de confirmación estilo Waze, contactos por categoría y panel de moderación. API en Go (net/http, pgx, sqlc), Next.js, PostgreSQL, fotos en almacenamiento S3 sin EXIF y filtradas con SafeSearch, desplegado con Docker Compose y GitHub Actions.",
       },
       {
         name: "Comunidad Reborn — comunidadreborn.net",
@@ -148,7 +157,7 @@ export const cv = {
       },
     ],
     skills: [
-      ["Lenguajes", "TypeScript, JavaScript, Lua, Java"],
+      ["Lenguajes", "TypeScript, JavaScript, Go, Lua, Java"],
       ["Frontend", "React, Next.js, Astro, Redux / RTK, Tailwind CSS, SCSS"],
       ["Backend", "Node.js, NestJS, Fastify, Express, Bun"],
       ["Datos", "PostgreSQL, MySQL / MariaDB, Redis, Prisma, Sequelize"],
