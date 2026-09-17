@@ -8,7 +8,7 @@ Personal portfolio and blog of Renzo Luis Battaglino, built with Astro and Tailw
 - 🎨 Styled with Tailwind CSS for easy customization
 - 📱 Fully responsive design
 - 🧩 Bento-style layout for an attractive presentation
-- 🌍 Bilingual (English at the root, Spanish under `/es/`) from a single set of pages
+- 🌍 Bilingual (Spanish at the root, English under `/en/`) from a single set of pages
 - 🌗 Light and dark theme, following the system preference by default
 - 📝 Integrated blog with Markdown support
 - 🔍 SEO optimized
@@ -40,8 +40,8 @@ Personal portfolio and blog of Renzo Luis Battaglino, built with Astro and Tailw
 
 ## Languages
 
-Pages live once, under `src/pages/[...lang]/`. The rest param is `undefined` for English
-(`/about`) and `"es"` for Spanish (`/es/about`). All copy lives in `src/i18n/ui.ts`; the
+Pages live once, under `src/pages/[...lang]/`. The rest param is `undefined` for Spanish
+(`/about`) and `"en"` for English (`/en/about`). All copy lives in `src/i18n/ui.ts`; the
 data files in `src/utils/` export `(lang) => data`.
 
 `localizePath()` is the single source of truth for URLs — it always returns a trailing

@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
-import { toLang, useTranslations } from "../../../i18n/ui";
+import { DEFAULT_LANG, toLang, useTranslations } from "../../../i18n/ui";
 import { postPathsByKey } from "../../../i18n/posts";
 import { CARD, CHIP } from "../../../styles/ui";
 
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   // A post is emitted only under its own language's route.
   return posts.map((post) => ({
     params: {
-      lang: post.data.lang === "en" ? undefined : post.data.lang,
+      lang: post.data.lang === DEFAULT_LANG ? undefined : post.data.lang,
       slug: post.slug,
     },
     props: { post },

@@ -1,6 +1,6 @@
-/** `lang: undefined` emits the English page at the root ("/about");
- *  `lang: "es"` emits the prefixed one ("/es/about"). */
+/** `lang: undefined` emits the Spanish page at the root ("/about");
+ *  `lang: "en"` emits the prefixed one ("/en/about"). */
 export const langPaths = () => [
   { params: { lang: undefined } },
-  { params: { lang: "es" } },
+  { params: { lang: "en" } },
 ];

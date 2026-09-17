@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { LANGS, localizePath } from "../i18n/ui";
+import { DEFAULT_LANG, LANGS, localizePath } from "../i18n/ui";
 import { postPathsByKey, type PostPaths } from "../i18n/posts";
 import { getCollection } from "astro:content";
 
@@ -33,7 +33,7 @@ export const GET: APIRoute = async ({ site }) => {
           (l) =>
             `    <xhtml:link rel="alternate" hreflang="${l}" href="${new URL(paths[l], site)}"/>`,
         ),
-        `    <xhtml:link rel="alternate" hreflang="x-default" href="${new URL(paths.en, site)}"/>`,
+        `    <xhtml:link rel="alternate" hreflang="x-default" href="${new URL(paths[DEFAULT_LANG], site)}"/>`,
       ].join("\n");
       return `  <url>
     <loc>${new URL(paths[lang], site)}</loc>${

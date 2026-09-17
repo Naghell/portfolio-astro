@@ -1,18 +1,18 @@
 export const LANGS = ["en", "es"] as const;
 export type Lang = (typeof LANGS)[number];
-export const DEFAULT_LANG: Lang = "en";
+export const DEFAULT_LANG: Lang = "es";
 
 /** Rest-param routes give `undefined` for the default language (`/about`)
- *  and `"es"` for the prefixed one (`/es/about`). */
+ *  and `"en"` for the prefixed one (`/en/about`). */
 export function toLang(param?: string): Lang {
-  return param === "es" ? "es" : DEFAULT_LANG;
+  return param === "en" ? "en" : DEFAULT_LANG;
 }
 
-/** `path` is always the English-rooted path ("/", "/about").
+/** `path` is always the unprefixed path ("/", "/about").
  *  Always returns a trailing slash so hrefs, hreflang and the canonical agree —
  *  the build emits directory-style URLs, and a mismatch reads as two URLs to Google. */
 export function localizePath(path: string, lang: Lang): string {
-  const base = lang === DEFAULT_LANG ? path : `/es${path === "/" ? "" : path}`;
+  const base = lang === DEFAULT_LANG ? path : `/${lang}${path === "/" ? "" : path}`;
   return base.endsWith("/") ? base : `${base}/`;
 }
 
