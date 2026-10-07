@@ -25,6 +25,8 @@ export interface Project {
   technologies: Technology[];
   githubUrl?: string;
   liveUrl?: string;
+  /** Live with paying customers: gets the wide card and the badge. */
+  inProduction?: boolean;
 }
 
 const base = [
@@ -32,6 +34,7 @@ const base = [
     title: "Habita",
     imageUrl: "/projects/habita.avif",
     liveUrl: "https://habita.ar",
+    inProduction: true,
     technologies: [
       { name: "Next.js", icon: SiNextdotjs },
       { name: "TypeScript", icon: SiTypescript },
@@ -39,8 +42,8 @@ const base = [
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "Docker", icon: SiDocker },
     ],
-    en: "A rental contract is a mess of index adjustments, guarantees and split receipts. Habita keeps that straight for an agency: contracts that adjust by ICL, IPC, UVA or CER, services and taxes per contract, owner settlements with itemized commission, a daily cash book and an agenda of what falls due. An agency moves its whole portfolio over from eSecure or a spreadsheet, and tenants and owners get a portal with the signed contract and WhatsApp notices. One core package behind the HTTP API and an MCP server that covers the whole backoffice, with tenant isolation enforced by row-level security in Postgres.",
-    es: "Un contrato de alquiler es un lío de ajustes por índice, garantías y recibos partidos. Habita se lo ordena a la inmobiliaria: contratos que ajustan por ICL, IPC, UVA o CER, servicios e impuestos por contrato, liquidaciones al propietario con comisión ítem por ítem, caja diaria y una agenda de lo que vence. La inmobiliaria trae su cartera entera desde eSecure o una planilla, e inquilinos y propietarios tienen un portal con el contrato firmado y avisos por WhatsApp. Un solo core detrás de la API HTTP y de un servidor MCP que cubre todo el backoffice, con aislamiento por row-level security en Postgres.",
+    en: "Software for Argentine real estate agencies, live at habita.ar. A rental contract is a mess of index adjustments, guarantees and split receipts. Habita keeps that straight for an agency: contracts that adjust by ICL, IPC, UVA or CER, services and taxes per contract, owner settlements with itemized commission, a daily cash book and an agenda of what falls due. An agency moves its whole portfolio over from eSecure or a spreadsheet, and tenants and owners get a portal with the signed contract and WhatsApp notices. One core package behind the HTTP API and an MCP server that covers the whole backoffice, with tenant isolation enforced by row-level security in Postgres.",
+    es: "Software para inmobiliarias argentinas, en producción en habita.ar. Un contrato de alquiler es un lío de ajustes por índice, garantías y recibos partidos. Habita se lo ordena a la inmobiliaria: contratos que ajustan por ICL, IPC, UVA o CER, servicios e impuestos por contrato, liquidaciones al propietario con comisión ítem por ítem, caja diaria y una agenda de lo que vence. La inmobiliaria trae su cartera entera desde eSecure o una planilla, e inquilinos y propietarios tienen un portal con el contrato firmado y avisos por WhatsApp. Un solo core detrás de la API HTTP y de un servidor MCP que cubre todo el backoffice, con aislamiento por row-level security en Postgres.",
   },
   {
     title: "Barrito",

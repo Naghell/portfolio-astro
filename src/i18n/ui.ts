@@ -50,7 +50,7 @@ const ui = {
     "home.stack.cta": "Explore my stack",
     "home.about.blurb": "My path, how I work and what I'm learning right now.",
     "home.about.cta": "Read more",
-    "home.projects.blurb": "Products and sites I've designed, built and shipped.",
+    "home.projects.blurb": "Habita, my SaaS for real estate agencies now in production, plus the other products and sites I've built.",
     "home.projects.cta": "View projects",
     "home.experience.blurb": "Where I've worked and what I built there.",
     "home.experience.cta": "See my experience",
@@ -76,6 +76,7 @@ const ui = {
     "projects.live": "Live site",
     "projects.githubOf": "{project} on GitHub",
     "projects.liveOf": "Open {project}",
+    "projects.inProduction": "In production",
 
     "blog.readMore": "Read the post",
     "blog.published": "Published",
@@ -108,7 +109,7 @@ const ui = {
     "home.stack.cta": "Ver mis tecnologías",
     "home.about.blurb": "Mi recorrido, cómo trabajo y qué estoy aprendiendo ahora.",
     "home.about.cta": "Leer más",
-    "home.projects.blurb": "Productos y sitios que diseñé, construí y puse en producción.",
+    "home.projects.blurb": "Habita, mi SaaS para inmobiliarias ya en producción, y los otros productos y sitios que construí.",
     "home.projects.cta": "Ver proyectos",
     "home.experience.blurb": "Dónde trabajé y qué construí en cada lugar.",
     "home.experience.cta": "Ver mi experiencia",
@@ -134,6 +135,7 @@ const ui = {
     "projects.live": "Sitio en vivo",
     "projects.githubOf": "{project} en GitHub",
     "projects.liveOf": "Abrir {project}",
+    "projects.inProduction": "En producción",
 
     "blog.readMore": "Leer el artículo",
     "blog.published": "Publicado",
@@ -160,7 +162,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/": {
       title: "Home",
       description:
-        "Renzo Luis Battaglino - Full Stack Developer from Córdoba, Argentina, specialized in TypeScript, Next.js, Node.js and fintech products.",
+        "Renzo Luis Battaglino - Full Stack Developer from Córdoba, Argentina, specialized in TypeScript, Next.js and Node.js. Fintech at Lannis, and the builder of Habita, software for real estate agencies.",
     },
     "/about": {
       title: "About me",
@@ -175,7 +177,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/projects": {
       title: "Projects",
       description:
-        "Web projects built with Astro, Next.js, React and Node.js - portfolios, landing pages and full stack applications.",
+        "Habita, a rental management SaaS for Argentine real estate agencies in production, plus Barrito and other web projects built with Next.js, Go, PostgreSQL and Astro.",
     },
     "/tech-stack": {
       title: "Tech stack",
@@ -192,7 +194,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/": {
       title: "Inicio",
       description:
-        "Renzo Luis Battaglino - Desarrollador Full Stack de Córdoba, Argentina, especializado en TypeScript, Next.js, Node.js y productos fintech.",
+        "Renzo Luis Battaglino - Desarrollador Full Stack de Córdoba, Argentina, especializado en TypeScript, Next.js y Node.js. Fintech en Lannis, y creador de Habita, software para inmobiliarias.",
     },
     "/about": {
       title: "Sobre mí",
@@ -207,7 +209,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/projects": {
       title: "Proyectos",
       description:
-        "Proyectos web construidos con Astro, Next.js, React y Node.js: portfolios, landings y aplicaciones full stack.",
+        "Habita, un SaaS de administración de alquileres para inmobiliarias argentinas en producción, más Barrito y otros proyectos web con Next.js, Go, PostgreSQL y Astro.",
     },
     "/tech-stack": {
       title: "Tecnologías",

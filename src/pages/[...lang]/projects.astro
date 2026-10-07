@@ -21,17 +21,25 @@ const items = projects(lang);
 
     <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {
-        items.map((project) => (
-          <li class={`${CARD} flex flex-col gap-3 p-4`}>
+        items.map((project, i) => (
+          <li class={`${CARD} flex flex-col gap-3 p-4 ${project.inProduction ? "md:col-span-2" : ""}`}>
             <Image
               src={project.imageUrl}
               alt=""
-              width={500}
-              height={300}
-              loading="lazy"
-              class="h-44 w-full rounded-lg object-cover outline outline-1 -outline-offset-1 outline-image"
+              width={project.inProduction ? 1000 : 500}
+              height={project.inProduction ? 500 : 300}
+              loading={i === 0 ? "eager" : "lazy"}
+              class={`${project.inProduction ? "h-44 object-top md:h-64" : "h-44"} w-full rounded-lg object-cover outline outline-1 -outline-offset-1 outline-image`}
             />
-            <h2 class="text-balance text-xl font-semibold text-content-primary">{project.title}</h2>
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="text-balance text-xl font-semibold text-content-primary">{project.title}</h2>
+              {project.inProduction && (
+                <span class="inline-flex items-center gap-1.5 rounded-md bg-content-accent/10 px-2 py-0.5 text-xs font-semibold text-content-accent">
+                  <span aria-hidden="true" class="size-1.5 rounded-full bg-current" />
+                  {t("projects.inProduction")}
+                </span>
+              )}
+            </div>
             <p class="flex-1 text-pretty leading-relaxed text-content-secondary">
               {project.description}
             </p>

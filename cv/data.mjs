@@ -60,7 +60,7 @@ export const cv = {
     },
     projects: [
       {
-        name: "Habita — habita.ar",
+        name: "Habita — habita.ar (in production)",
         note: "Multi-tenant SaaS for Argentine real estate agencies: contracts with automatic index adjustment (ICL, IPC, UVA, CER), services and taxes per contract, owner settlements with itemized commission, daily cash book and due-date agenda, portfolio import from eSecure and spreadsheets, tenant and owner portals with WhatsApp notifications. One core package behind the HTTP API and an MCP server covering the full backoffice. Bun monorepo, Next.js + Hono, PostgreSQL with row-level security.",
       },
       {
@@ -140,7 +140,7 @@ export const cv = {
     },
     projects: [
       {
-        name: "Habita — habita.ar",
+        name: "Habita — habita.ar (en producción)",
         note: "SaaS multi-tenant para inmobiliarias argentinas: contratos con ajuste automático por índice (ICL, IPC, UVA, CER), servicios e impuestos por contrato, liquidaciones al propietario con comisión ítem por ítem, caja diaria y agenda de vencimientos, importación de cartera desde eSecure y planillas, portales de inquilino y propietario con avisos por WhatsApp. Un solo core detrás de la API HTTP y de un servidor MCP que cubre todo el backoffice. Monorepo Bun, Next.js + Hono, PostgreSQL con row-level security.",
       },
       {
