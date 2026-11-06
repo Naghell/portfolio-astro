@@ -50,6 +50,7 @@ const base = [
     title: "Barrito",
     size: "wide" as const,
     imageUrl: "/projects/barrito.avif",
+    liveUrl: "https://barrito.battaglino.dev",
     technologies: [
       { name: "Go", icon: SiGo },
       { name: "Next.js", icon: SiNextdotjs },

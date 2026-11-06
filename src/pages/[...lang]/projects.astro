@@ -37,7 +37,7 @@ const items = projects(lang);
               width={project.size ? 900 : 500}
               height={project.size ? 560 : 300}
               loading={i === 0 ? "eager" : "lazy"}
-              class={`${project.size === "wide" ? "aspect-[16/10] object-left-top lg:aspect-auto lg:h-full" : project.size ? "aspect-[16/10] object-left-top" : "h-44"} w-full rounded-lg object-cover outline outline-1 -outline-offset-1 outline-image`}
+              class={`${project.size === "wide" ? "aspect-[16/10] object-top lg:aspect-[43/46] lg:self-center" : project.size ? "aspect-[16/10] object-left-top" : "h-44"} w-full rounded-lg object-cover outline outline-1 -outline-offset-1 outline-image`}
             />
             <div class="flex flex-1 flex-col gap-3">
             <h2 class={CARD_TITLE}>{project.title}</h2>
