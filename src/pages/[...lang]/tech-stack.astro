@@ -4,7 +4,7 @@ import PageHeader from "../../components/PageHeader.astro";
 import { langPaths } from "../../i18n/paths";
 import { toLang, useTranslations } from "../../i18n/ui";
 import { techStack } from "../../utils/stack";
-import { CARD } from "../../styles/ui";
+import { CARD, CARD_TITLE } from "../../styles/ui";
 
 export const getStaticPaths = langPaths;
 
@@ -20,8 +20,8 @@ const groups = techStack(lang);
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {
         groups.map(({ category, items }) => (
-          <section class={`${CARD} p-4`}>
-            <h2 class="mb-3 text-lg font-semibold text-content-accent">{category}</h2>
+          <section class={CARD}>
+            <h2 class={`${CARD_TITLE} mb-3`}>{category}</h2>
             <ul class="space-y-2">
               {items.map((tech) => (
                 <li class="flex items-center gap-2 text-content-secondary">

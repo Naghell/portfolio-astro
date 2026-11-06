@@ -16,6 +16,8 @@ export function localizePath(path: string, lang: Lang): string {
   return base.endsWith("/") ? base : `${base}/`;
 }
 
+export const EMAIL = "renzo@battaglino.dev";
+
 export const NAV = [
   { path: "/tech-stack", key: "nav.stack" },
   { path: "/about", key: "nav.about" },
@@ -46,11 +48,18 @@ const ui = {
     "home.heading": "Hi, I'm Renzo",
     "home.blurb": "TypeScript, fintech and product-minded engineering.",
     "home.cv": "CV",
+    "home.email": "Email",
+    "home.blog.latest": "Latest post",
+    "contact.title": "Contact",
+    "contact.lead": "A role, a project or a question?",
+    "contact.cta": "Write to me",
+    "contact.copied": "Address copied",
+    "contact.subject": "Contact from battaglino.dev",
     "home.stack.blurb": "The technologies and tools I work with every day.",
     "home.stack.cta": "Explore my stack",
     "home.about.blurb": "My path, how I work and what I'm learning right now.",
     "home.about.cta": "Read more",
-    "home.projects.blurb": "Habita, my SaaS for real estate agencies now in production, plus the other products and sites I've built.",
+    "home.projects.blurb": "Habita, software for real estate agencies with around 400 users, plus the other products and sites I've built.",
     "home.projects.cta": "View projects",
     "home.experience.blurb": "Where I've worked and what I built there.",
     "home.experience.cta": "See my experience",
@@ -76,13 +85,15 @@ const ui = {
     "projects.live": "Live site",
     "projects.githubOf": "{project} on GitHub",
     "projects.liveOf": "Open {project}",
-    "projects.inProduction": "In production",
 
     "blog.readMore": "Read the post",
     "blog.published": "Published",
     "blog.updated": "Updated",
     "blog.empty.title": "No posts yet",
     "blog.empty.body": "I write here about development and the things I build.",
+    "blog.back": "All posts",
+    "blog.about": "About this blog",
+    "blog.topics": "Topics",
   },
   es: {
     "site.tagline": "Desarrollador Full Stack",
@@ -105,11 +116,18 @@ const ui = {
     "home.heading": "Hola, soy Renzo",
     "home.blurb": "TypeScript, fintech e ingeniería con foco en producto.",
     "home.cv": "CV",
+    "home.email": "Email",
+    "home.blog.latest": "Último artículo",
+    "contact.title": "Contacto",
+    "contact.lead": "¿Un puesto, un proyecto o una pregunta?",
+    "contact.cta": "Escribime",
+    "contact.copied": "Dirección copiada",
+    "contact.subject": "Contacto desde battaglino.dev",
     "home.stack.blurb": "Las tecnologías y herramientas con las que trabajo todos los días.",
     "home.stack.cta": "Ver mis tecnologías",
     "home.about.blurb": "Mi recorrido, cómo trabajo y qué estoy aprendiendo ahora.",
     "home.about.cta": "Leer más",
-    "home.projects.blurb": "Habita, mi SaaS para inmobiliarias ya en producción, y los otros productos y sitios que construí.",
+    "home.projects.blurb": "Habita, software para inmobiliarias con unos 400 usuarios, y los otros productos y sitios que construí.",
     "home.projects.cta": "Ver proyectos",
     "home.experience.blurb": "Dónde trabajé y qué construí en cada lugar.",
     "home.experience.cta": "Ver mi experiencia",
@@ -135,13 +153,15 @@ const ui = {
     "projects.live": "Sitio en vivo",
     "projects.githubOf": "{project} en GitHub",
     "projects.liveOf": "Abrir {project}",
-    "projects.inProduction": "En producción",
 
     "blog.readMore": "Leer el artículo",
     "blog.published": "Publicado",
     "blog.updated": "Actualizado",
     "blog.empty.title": "Todavía no hay artículos",
     "blog.empty.body": "Acá escribo sobre desarrollo y las cosas que construyo.",
+    "blog.back": "Todos los artículos",
+    "blog.about": "Sobre el blog",
+    "blog.topics": "Temas",
   },
 } as const;
 
@@ -177,7 +197,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/projects": {
       title: "Projects",
       description:
-        "Habita, a rental management SaaS for Argentine real estate agencies in production, plus Barrito and other web projects built with Next.js, Go, PostgreSQL and Astro.",
+        "Habita, rental management software for Argentine real estate agencies with around 400 users, plus Barrito, a non-profit neighbourhood map, and other web projects built with Next.js, Go, PostgreSQL and Astro.",
     },
     "/tech-stack": {
       title: "Tech stack",
@@ -209,7 +229,7 @@ export const meta: Record<Lang, Record<string, { title: string; description: str
     "/projects": {
       title: "Proyectos",
       description:
-        "Habita, un SaaS de administración de alquileres para inmobiliarias argentinas en producción, más Barrito y otros proyectos web con Next.js, Go, PostgreSQL y Astro.",
+        "Habita, un software de administración de alquileres para inmobiliarias argentinas con unos 400 usuarios, más Barrito, un mapa vecinal sin fines de lucro, y otros proyectos web con Next.js, Go, PostgreSQL y Astro.",
     },
     "/tech-stack": {
       title: "Tecnologías",

@@ -4,17 +4,18 @@ import PageHeader from "../../../components/PageHeader.astro";
 import { langPaths } from "../../../i18n/paths";
 import { toLang, useTranslations, localizePath } from "../../../i18n/ui";
 import { postsFor } from "../../../i18n/posts";
-import { CARD, CARD_HOVER, CHIP, FOCUS } from "../../../styles/ui";
+import { CARD, CARD_HOVER, CARD_TITLE, CHIP, FOCUS } from "../../../styles/ui";
 
 export const getStaticPaths = langPaths;
 
 const lang = toLang(Astro.params.lang);
 const t = useTranslations(lang);
 const posts = await postsFor(lang);
+const topics = [...new Set(posts.flatMap((p) => p.data.tags))];
 
 const fmt = new Intl.DateTimeFormat(lang === "es" ? "es-AR" : "en-US", {
   year: "numeric",
-  month: "short",
+  month: "long",
   day: "numeric",
 });
 ---
@@ -25,47 +26,51 @@ const fmt = new Intl.DateTimeFormat(lang === "es" ? "es-AR" : "en-US", {
 
     {
       posts.length === 0 ? (
-        <div class={`${CARD} p-6`}>
+        <div class={CARD}>
           <p class="font-semibold text-content-primary">{t("blog.empty.title")}</p>
           <p class="mt-1 text-content-secondary">{t("blog.empty.body")}</p>
         </div>
       ) : (
-        <ul class="flex flex-col gap-4">
-          {posts.map((post) => (
-            <li>
-              <a
-                href={localizePath(`/blog/${post.slug}`, lang)}
-                class={`${CARD} ${CARD_HOVER} ${FOCUS} group flex flex-col gap-2 p-4 sm:p-6`}
-              >
-                <h2 class="text-balance text-xl font-semibold text-content-primary">
-                  {post.data.title}
-                </h2>
-                <p class="text-sm tabular-nums text-content-secondary">
-                  <time datetime={post.data.pubDate.toISOString()}>
-                    {fmt.format(post.data.pubDate)}
-                  </time>
-                </p>
-                <p class="max-w-[65ch] text-pretty leading-relaxed text-content-secondary">
-                  {post.data.description}
-                </p>
-                {post.data.tags.length > 0 && (
-                  <ul class="mt-1 flex flex-wrap gap-2">
-                    {post.data.tags.map((tag) => (
+        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, i) => (
+            <>
+              <li class={i === 0 ? "lg:col-span-2" : ""}>
+                <a
+                  href={localizePath(`/blog/${post.slug}`, lang)}
+                  class={`${CARD} ${CARD_HOVER} ${FOCUS} group flex h-full flex-col gap-3`}
+                >
+                  <p class="text-sm tabular-nums text-content-secondary">
+                    <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+                  </p>
+                  <h2 class={`${CARD_TITLE} ${i === 0 ? "sm:text-2xl" : ""}`}>{post.data.title}</h2>
+                  <p class="max-w-[65ch] text-pretty leading-relaxed text-content-secondary">
+                    {post.data.description}
+                  </p>
+                  <span class="mt-auto pt-2 text-sm font-medium text-content-accent">
+                    {t("blog.readMore")}
+                    <span
+                      aria-hidden="true"
+                      class="inline-block transition-transform duration-150 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                    >
+                      &nbsp;→
+                    </span>
+                  </span>
+                </a>
+              </li>
+              {/* The side tile sits next to the newest post, so the first row is never a lone stretched card. */}
+              {i === 0 && (
+                <li class={`${CARD} flex flex-col gap-3`}>
+                  <h2 class={CARD_TITLE}>{t("blog.about")}</h2>
+                  <p class="text-pretty leading-relaxed text-content-secondary">{t("home.blog.blurb")}</p>
+                  <h3 class="mt-2 text-sm font-semibold text-content-primary">{t("blog.topics")}</h3>
+                  <ul class="flex flex-wrap gap-2">
+                    {topics.map((tag) => (
                       <li class={CHIP}>{tag}</li>
                     ))}
                   </ul>
-                )}
-                <span class="mt-1 text-sm font-medium text-content-accent">
-                  {t("blog.readMore")}
-                  <span
-                    aria-hidden="true"
-                    class="inline-block transition-transform duration-150 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-                  >
-                    &nbsp;→
-                  </span>
-                </span>
-              </a>
-            </li>
+                </li>
+              )}
+            </>
           ))}
         </ul>
       )

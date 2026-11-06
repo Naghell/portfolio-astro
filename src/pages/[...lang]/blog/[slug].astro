@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
-import { DEFAULT_LANG, toLang, useTranslations } from "../../../i18n/ui";
+import { DEFAULT_LANG, toLang, useTranslations, localizePath } from "../../../i18n/ui";
 import { postPathsByKey } from "../../../i18n/posts";
-import { CARD, CHIP } from "../../../styles/ui";
+import { CARD, CHIP, FOCUS } from "../../../styles/ui";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -41,40 +41,52 @@ const fmt = new Intl.DateTimeFormat(lang === "es" ? "es-AR" : "en-US", {
   type="article"
 >
   <main id="main" class="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-    <article class={`${CARD} w-full max-w-3xl p-5 sm:p-8`}>
-      <header class="mb-6">
-        <h1 class="text-balance text-3xl font-bold tracking-tight text-content-primary sm:text-4xl">
+    <!-- Bento like every other page: the post in a wide tile, its details in a tile beside it. -->
+    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3">
+      <article class={`${CARD} min-w-0 sm:p-8 lg:col-span-2`}>
+        <h1 class="mb-8 text-balance text-3xl font-bold leading-tight tracking-tight text-content-primary sm:text-4xl">
           {post.data.title}
         </h1>
-        <p class="mt-2 text-sm tabular-nums text-content-secondary">
-          {t("blog.published")}
-          <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+        <div class="post">
+          <Content />
+        </div>
+      </article>
+
+      <aside class={`${CARD} flex flex-col gap-4 lg:sticky lg:top-6`}>
+        <dl class="grid gap-3 text-sm">
+          <div>
+            <dt class="font-semibold text-content-primary">{t("blog.published")}</dt>
+            <dd class="tabular-nums text-content-secondary">
+              <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+            </dd>
+          </div>
           {
             post.data.updatedDate && (
-              <>
-                {" · "}
-                {t("blog.updated")}
-                <time datetime={post.data.updatedDate.toISOString()}>
-                  {fmt.format(post.data.updatedDate)}
-                </time>
-              </>
+              <div>
+                <dt class="font-semibold text-content-primary">{t("blog.updated")}</dt>
+                <dd class="tabular-nums text-content-secondary">
+                  <time datetime={post.data.updatedDate.toISOString()}>{fmt.format(post.data.updatedDate)}</time>
+                </dd>
+              </div>
             )
           }
-        </p>
+        </dl>
         {
           post.data.tags.length > 0 && (
-            <ul class="mt-3 flex flex-wrap gap-2">
+            <ul class="flex flex-wrap gap-2">
               {post.data.tags.map((tag) => (
                 <li class={CHIP}>{tag}</li>
               ))}
             </ul>
           )
         }
-      </header>
-
-      <div class="post">
-        <Content />
-      </div>
-    </article>
+        <a
+          href={localizePath("/blog", lang)}
+          class={`${FOCUS} inline-flex min-h-11 items-center self-start rounded-sm text-sm font-medium text-content-accent hover:underline hover:underline-offset-4`}
+        >
+          ← {t("blog.back")}
+        </a>
+      </aside>
+    </div>
   </main>
 </Layout>

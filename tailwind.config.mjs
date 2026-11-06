@@ -12,11 +12,15 @@ export default {
       colors: {
         page: "var(--bg-page)",
         surface: {
-          from: "var(--surface-from)",
-          to: "var(--surface-to)",
-          "hover-from": "var(--surface-hover-from)",
-          "hover-to": "var(--surface-hover-to)",
+          DEFAULT: "var(--surface)",
+          hover: "var(--surface-hover)",
+          inset: "var(--surface-inset)",
           border: "var(--border-surface)",
+        },
+        accent: {
+          fill: "var(--accent-fill)",
+          "fill-hover": "var(--accent-fill-hover)",
+          on: "var(--on-accent)",
         },
         content: {
           primary: "var(--text-primary)",
@@ -25,9 +29,6 @@ export default {
         },
         ring: "var(--focus-ring)",
         plate: "var(--logo-plate)",
-      },
-      boxShadow: {
-        surface: "var(--shadow-surface)",
       },
       outlineColor: {
         image: "var(--image-outline)",

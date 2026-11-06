@@ -1,38 +1,43 @@
-/* Semantic tokens. Primitives are Tailwind's violet ramp; nothing below is a raw
-   value applied in a component — components only ever reference these roles.
+/* Semantic tokens. Primitives are Tailwind's violet ramp; components only ever
+   reference these roles. Surfaces are flat: a card is one tone step from the page,
+   with no gradient, border or shadow.
    One switching mechanism: the `.dark` class on <html>. No prefers-color-scheme
    here; the inline script in Layout.astro resolves the system preference to a class. */
 
 :root {
   --bg-page: #faf9ff;
-  --surface-from: #ffffff;
-  --surface-to: #f5f3ff;
-  --surface-hover-from: #f5f3ff;
-  --surface-hover-to: #ede9fe;
+  --surface: #f1edfd;
+  --surface-hover: #e9e3fc;
+  /* Controls and chips sitting on a card: one step back towards the page. */
+  --surface-inset: #ffffff;
   --border-surface: #ddd6fe;
   --text-primary: #1e1b2e;
-  --text-secondary: #514c66;
+  --text-secondary: #4a4560;
   --text-accent: #6d28d9;
+  /* The one loud tile: contact. */
+  --accent-fill: #6d28d9;
+  --accent-fill-hover: #5b21b6;
+  --on-accent: #ffffff;
   --focus-ring: #7c3aed;
   --logo-plate: #ffffff;
-  --image-outline: rgb(0 0 0 / 0.1);
-  --shadow-surface: 0 1px 2px rgb(30 27 46 / 0.04), 0 4px 12px rgb(30 27 46 / 0.06);
+  --image-outline: rgb(0 0 0 / 0.08);
 }
 
 .dark {
-  --bg-page: #0a0a0a;
-  --surface-from: #2e1065;
-  --surface-to: #5b21b6;
-  --surface-hover-from: #4c1d95;
-  --surface-hover-to: #6d28d9;
-  --border-surface: #8b5cf6;
-  --text-primary: #ffffff;
-  --text-secondary: #ddd6fe;
+  --bg-page: #0c0a12;
+  --surface: #1a1528;
+  --surface-hover: #221b35;
+  --surface-inset: #0c0a12;
+  --border-surface: #3b2f5c;
+  --text-primary: #f5f3ff;
+  --text-secondary: #c9c2dd;
   --text-accent: #c4b5fd;
+  --accent-fill: #7c3aed;
+  --accent-fill-hover: #6d28d9;
+  --on-accent: #ffffff;
   --focus-ring: #a78bfa;
   --logo-plate: #ffffff;
-  --image-outline: rgb(255 255 255 / 0.1);
-  --shadow-surface: none;
+  --image-outline: rgb(255 255 255 / 0.08);
 }
 
 /* Reserve the scrollbar gutter on every page. Without it a short page has no
@@ -47,6 +52,12 @@ html {
 .focus-ring:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
+}
+
+/* On the filled contact tile the violet ring would vanish; use the tile's own ink. */
+.focus-ring-light:focus-visible {
+  outline: 2px solid var(--on-accent);
+  outline-offset: 3px;
 }
 
 .focus-ring-inset:focus-visible {
